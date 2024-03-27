@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.section {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+h2, h3 {
+  color: #333;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+ul li::before {
+  content: '▹ ';
+  color: #ff5722; /* 橙色箭头 */
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* 这里可以添加更多自定义样式 */
