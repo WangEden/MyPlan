@@ -4,8 +4,8 @@
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "/",
-  "start_url": "/MyPlan/index.html",
+  "scope": "/MyPlan/",
+  "start_url": "/MyPlan/",
   "icons": [
       {
         "src": "img/pwa/36.png",
