@@ -1,11 +1,11 @@
 {
-  "name": "周任务Eden",
-  "short_name": "周任务Eden",
+  "name": "周任务清单",
+  "short_name": "周任务清单",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/index.html",
   "icons": [
       {
         "src": "img/pwa/36.png",
