@@ -55,27 +55,6 @@ template = """
 </head>
 <body>
     <div class="container">
-        <h2>周任务</h2>
-        <div id="weekTaskList" class="section">
-            <h3>Eden</h3>
-            <div class="soupDest"></div>
-        </div>
-        <div class="section">
-            <h3>周一</h3>
-            <div class="soupDest"></div>
-            <h3>周二</h3>
-            <div class="soupDest"></div>
-            <h3>周三</h3>
-            <div class="soupDest"></div>
-            <h3>周四</h3>
-            <div class="soupDest"></div>
-            <h3>周五</h3>
-            <div class="soupDest"></div>
-            <h3>周六</h3>
-            <div class="soupDest"></div>
-            <h3>周日</h3>
-            <div class="soupDest"></div>
-        </div>
     </div>
 </body>
 </html>
@@ -92,20 +71,17 @@ with open(file_path, 'r', encoding="utf-8") as file:
 
 # 将内容转成简易的 HTML 节点
 html = markdown.markdown(md_text)
+# print(html)
 
 # 利用 BeautifulSoup 修改
 sourceSoup = BeautifulSoup(html, 'html.parser')
 targetSoup = BeautifulSoup(template, 'html.parser')
+containerNode = targetSoup.find(class_="container") # 找到容器
 
-sourceTaskNodeList = sourceSoup.find_all('ol')
-targetTaskNodeList = targetSoup.find_all(class_="soupDest")
-
-for index, value in enumerate(targetTaskNodeList):
-    targetTaskNodeList[index].append(sourceTaskNodeList[index])
-    
+# --------------------------------------- test
+containerNode.append(sourceSoup)
 html = targetSoup.prettify()
-# print(html)
-
 with open(html_path, 'w', encoding='utf-8') as file:
     file.write(html)
     print("ok")
+# ---------------------------------------
