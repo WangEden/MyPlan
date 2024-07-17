@@ -50,20 +50,41 @@ template = """
     <link rel="apple-touch-startup-image" href="/img/pwa/splash-1334x750.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/>
     <link rel="apple-touch-startup-image" href="/img/pwa/splash-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/>
     <link rel="apple-touch-startup-image" href="/img/pwa/splash-1136x640.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>周任务清单</title>
     <link rel="stylesheet" href="./style/style.css" id="myStyle" >
 </head>
 <body>
+    <div id="float-btn-in">
+      <i class='bx bxs-zoom-in'></i>
+    </div>
+    <div id="float-btn-out">
+      <i class='bx bxs-zoom-out'></i>
+    </div>
     <div class="container">
     </div>
     <script>
         window.onload = function() {
             var t = new Date().getHours();
-            if (t >= 19 || t <= 6){
+            if (t >= 19 || t <= 6) {
                 var obj = document.getElementById("myStyle");
                 obj.setAttribute("href", "./style/style-dark.css");
             }
         }
+        const pTags = document.querySelectorAll('p');
+        const btnIn = document.getElementById('float-btn-in');
+        const btnOut = document.getElementById('float-btn-out');
+
+        function adjustFontSize(isIncreasing) {
+          pTags.forEach(p => {
+            // 获取当前字体大小
+            const currentSize = parseFloat(window.getComputedStyle(p).fontSize);
+            // 根据isIncreasing标志增大或减小字体大小
+            p.style.fontSize = isIncreasing ? `${currentSize + 1}px` : `${currentSize - 1}px`;
+          });
+        }
+        btnIn.addEventListener('click', () => adjustFontSize(true));
+        btnOut.addEventListener('click', () => adjustFontSize(false));
     </script>
 </body>
 </html>

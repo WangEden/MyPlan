@@ -8,6 +8,59 @@ body {
   max-width: 1200px;
 }
 
+@keyframes border-animation {
+  from {
+    box-shadow: none;
+  }
+  to {
+    box-shadow: 0 0 0 5px #333; /* 调整为你想要的颜色和大小 */
+  }
+}
+@keyframes background-animation {
+  from {
+    background: radial-gradient(circle, transparent 80%, #333 100%);
+  }
+  to {
+    background: white;
+  }
+}
+#float-btn-in, #float-btn-out {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #333;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 20px;
+    /* transition: box-shadow 0.3s ease; */
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+#float-btn-in i, #float-btn-out i {
+    font-size: 1.4em; /* 根据需要调整 */
+    color: white;
+    transition: color 0.3s ease;
+}
+#float-btn-in {
+  right: 20px;
+}
+#float-btn-out {
+  right: 80px;
+}
+#float-btn-in:hover, #float-btn-out:hover {
+    /* animation: border-animation 0.3s forwards; */
+    animation: background-animation 0.3s forwards;
+}
+#float-btn-in:hover i, #float-btn-out:hover i{
+    color: #333;
+}
+#float-btn-in:active, #float-btn-out:active {
+    background-color: white;
+}
+
 /* .section {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
