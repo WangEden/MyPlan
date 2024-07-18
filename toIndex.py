@@ -61,6 +61,10 @@ template = """
     <div id="float-btn-out">
       <i class='bx bxs-zoom-out'></i>
     </div>
+    <div id="float-btn-style">
+      <i id="styleIcon" class='bx bx-sun'></i>
+      <!-- <i class='bx bx-moon' ></i> -->
+    </div>
     <div class="container">
     </div>
     <script>
@@ -68,12 +72,15 @@ template = """
             var t = new Date().getHours();
             if (t >= 19 || t <= 6) {
                 var obj = document.getElementById("myStyle");
+                var styleIcon = document.getElementById("styleIcon");
                 obj.setAttribute("href", "./style/style-dark.css");
+                styleIcon.setAttribute("class", "bx bx-moon");
             }
         }
         const pTags = document.querySelectorAll('p');
         const btnIn = document.getElementById('float-btn-in');
         const btnOut = document.getElementById('float-btn-out');
+        const btnStyle = document.getElementById('float-btn-style');
 
         function adjustFontSize(isIncreasing) {
           pTags.forEach(p => {
@@ -83,8 +90,21 @@ template = """
             p.style.fontSize = isIncreasing ? `${currentSize + 1}px` : `${currentSize - 1}px`;
           });
         }
+        function adjustStyle() {
+          var obj = document.getElementById("myStyle");
+          var styleIcon = document.getElementById("styleIcon");
+          var currentStyle = obj.getAttribute("href");
+          if (currentStyle == "./style/style.css") {
+            obj.setAttribute("href", "./style/style-dark.css");
+            styleIcon.setAttribute("class", "bx bx-moon");
+          } else {
+            obj.setAttribute("href", "./style/style.css");
+            styleIcon.setAttribute("class", "bx bx-sun");
+          }
+        }
         btnIn.addEventListener('click', () => adjustFontSize(true));
         btnOut.addEventListener('click', () => adjustFontSize(false));
+        btnStyle.addEventListener('click', () => adjustStyle());
     </script>
 </body>
 </html>

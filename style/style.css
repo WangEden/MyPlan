@@ -24,7 +24,7 @@ body {
     background: white;
   }
 }
-#float-btn-in, #float-btn-out {
+#float-btn-in, #float-btn-out, #float-btn-style {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -39,7 +39,7 @@ body {
     transition: background 0.3s ease;
     cursor: pointer;
 }
-#float-btn-in i, #float-btn-out i {
+#float-btn-in i, #float-btn-out i, #float-btn-style i {
     font-size: 1.4em; /* 根据需要调整 */
     color: white;
     transition: color 0.3s ease;
@@ -50,14 +50,17 @@ body {
 #float-btn-out {
   right: 80px;
 }
-#float-btn-in:hover, #float-btn-out:hover {
+#float-btn-style {
+  right: 140px;
+}
+#float-btn-in:hover, #float-btn-out:hover, #float-btn-style:hover {
     /* animation: border-animation 0.3s forwards; */
     animation: background-animation 0.3s forwards;
 }
-#float-btn-in:hover i, #float-btn-out:hover i{
+#float-btn-in:hover i, #float-btn-out:hover i, #float-btn-style:hover i {
     color: #333;
 }
-#float-btn-in:active, #float-btn-out:active {
+#float-btn-in:active, #float-btn-out:active, #float-btn-style:active {
     background-color: white;
 }
 

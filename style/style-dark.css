@@ -24,7 +24,7 @@ body {
     background: radial-gradient(circle, transparent 80%, white 100%);
   }
 }
-#float-btn-in, #float-btn-out {
+#float-btn-in, #float-btn-out, #float-btn-style {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -38,7 +38,7 @@ body {
     /* transition: box-shadow 0.3s ease; */
     transition: background 0.3s ease;
 }
-#float-btn-in i, #float-btn-out i {
+#float-btn-in i, #float-btn-out i, #float-btn-style i {
     font-size: 1.4em; /* 根据需要调整 */
     color: #333;
     transition: color 0.3s ease;
@@ -49,13 +49,16 @@ body {
 #float-btn-out {
   right: 80px;
 }
-#float-btn-in:hover, #float-btn-out:hover {
+#float-btn-style {
+  right: 140px;
+}
+#float-btn-in:hover, #float-btn-out:hover, #float-btn-style:hover {
     animation: background-animation 0.3s forwards;
 }
-#float-btn-in:hover i, #float-btn-out:hover i{
+#float-btn-in:hover i, #float-btn-out:hover i, #float-btn-style:hover i {
     color: white;
 }
-#float-btn-in:active, #float-btn-out:active {
+#float-btn-in:active, #float-btn-out:active, #float-btn-style:active {
     background-color: #333;
 }
 
