@@ -53,7 +53,6 @@ template = """
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>周任务清单</title>
     <link rel="stylesheet" href="./style/style.css" id="myStyle" >
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <div id="float-btn-in">
@@ -107,6 +106,7 @@ template = """
         btnOut.addEventListener('click', () => adjustFontSize(false));
         btnStyle.addEventListener('click', () => adjustStyle());
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>
 </html>
 """
