@@ -52,6 +52,12 @@ template = """
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>周任务清单</title>
     <link rel="stylesheet" href="./style/style.css" id="myStyle" >
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+      .mathjax-sout {
+        text-decoration: line-through;
+      }
+    </style>
 </head>
 <body>
     <div id="float-btn-in">
@@ -105,12 +111,11 @@ template = """
         btnOut.addEventListener('click', () => adjustFontSize(false));
         btnStyle.addEventListener('click', () => adjustStyle());
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>
 </html>
 """
 
-
+"""
 import markdown
 from bs4 import BeautifulSoup
 
@@ -135,3 +140,46 @@ with open(html_path, 'w', encoding='utf-8') as file:
     file.write(html)
     print("ok")
 # ---------------------------------------
+"""
+import markdown
+from bs4 import BeautifulSoup
+import re
+
+# 读取 Markdown 文件
+with open(file_path, 'r', encoding="utf-8") as file:
+    md_text = file.read()
+
+# 将 Markdown 转换为 HTML
+html = markdown.markdown(md_text)
+
+# 使用 BeautifulSoup 解析 HTML
+sourceSoup = BeautifulSoup(html, 'html.parser')
+
+# 查找所有的删除线（~~内容~~），并替换为 <span class="mathjax-sout">内容</span>
+for del_tag in sourceSoup.find_all(string=re.compile(r'~~(.*?)~~')):
+    # 将 ~~内容~~ 直接替换成 <span class="mathjax-sout">内容</span>
+    new_text = re.sub(r'~~(.*?)~~', r'<span class="mathjax-sout">\1</span>', del_tag)
+    # 用修改后的文本替换掉原始的文本节点
+    del_tag.replace_with(BeautifulSoup(new_text, 'html.parser'))
+
+# 转换数学公式标记：$$公式$$ -> \[公式\] 和 $公式$ -> \(公式\)
+# html_with_mathjax = re.sub(r'\$\$(.*?)\$\$', r'\\[\1\\]', str(sourceSoup))  # 块级公式
+html_with_mathjax = re.sub(r'\$(.*?)\$', r'\\(\1\\)', str(sourceSoup))    # 行内公式
+
+# 如果有模板文件，继续处理模板部分
+targetSoup = BeautifulSoup(template, 'html.parser')
+containerNode = targetSoup.find(class_="container")  # 找到容器
+
+# 将转换后的 HTML 插入到模板的容器中
+containerNode.append(BeautifulSoup(html_with_mathjax, 'html.parser'))
+
+# 输出最终的 HTML 内容
+html = targetSoup.prettify()
+
+# 写入到文件
+with open(html_path, 'w', encoding='utf-8') as file:
+    file.write(html)
+    print("ok")
+
+
+
